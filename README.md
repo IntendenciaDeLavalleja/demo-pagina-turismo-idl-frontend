@@ -19,21 +19,21 @@ La salida estática se genera en `dist/`. Las fotografías, fuentes y licencias 
 
 ## Despliegue con Coolify
 
-La configuración sigue el esquema de Invest Lavalleja: URL pública de API en el frontend y `CORS_ORIGINS`, `OLLAMA_HOST`, `OLLAMA_API_KEY` y `OLLAMA_MODEL` en el backend. No se añadió un panel administrativo: estas opciones se gestionan desde Environment Variables de Coolify. No hace falta MariaDB, MinIO ni correo para este chat.
+La configuración está separada por servicio: el frontend usa `PUBLIC_GIANNA_API_BASE` y el backend usa `CORS_ORIGINS`, `OLLAMA_HOST`, `OLLAMA_API_KEY` y `OLLAMA_MODEL`. Cada repositorio tiene su propio `.env.example`; no copies variables entre ellos. No configures variables de Ollama ni `CORS_ORIGINS` en el frontend; la API key es un secreto runtime exclusivo del backend. No se añadió un panel administrativo: estas opciones se gestionan desde Environment Variables de Coolify. No hace falta MariaDB, MinIO ni correo para este chat.
 
-### Opción A: dos aplicaciones independientes (como Invest Lavalleja)
+### Opción A: dos aplicaciones en repositorios independientes
 
-Crear ambas aplicaciones desde este repositorio, con build pack **Dockerfile**:
+Crear ambas aplicaciones desde los repositorios institucionales, con build pack **Dockerfile**:
 
-| Recurso | Base Directory / contexto | Dockerfile relativo al contexto | Puerto | Health check |
-| --- | --- | --- | --- | --- |
-| Turismo | `/` | `/Dockerfile` | `80` | `GET /health` |
-| API Gianna | `/gianna-backend` | `/Dockerfile` | `5000` | `GET /api/ready` |
+| Recurso | Repositorio | Base Directory / contexto | Dockerfile relativo al contexto | Puerto | Health check |
+| --- | --- | --- | --- | --- | --- |
+| Turismo | `demo-pagina-turismo-idl-frontend` | `/` | `/Dockerfile` | `80` | `GET /health` |
+| API Gianna | `demo-pagina-turismo-idl-backend` | `/` | `/Dockerfile` | `5000` | `GET /api/ready` |
 
-Si Coolify pide la ubicación relativa al repositorio en lugar del contexto, el Dockerfile del backend es `/gianna-backend/Dockerfile`; el contexto debe seguir siendo `/gianna-backend`. También puede desplegarse esa carpeta como repositorio independiente, pero debe incluir su corpus `data/generated/` y `data/source/`.
+En el checkout integrado local, el backend está en `gianna-backend/`; en el repositorio institucional independiente, su Dockerfile está en la raíz y el corpus ya está incluido.
 
 1. Asignar primero el dominio HTTPS al backend, por ejemplo `https://gianna-api.turismo.example`.
-2. Configurar sus variables **runtime**, usando `gianna-backend/.env.example` como referencia:
+2. Configurar sus variables **runtime** en el recurso backend, usando `.env.example` de ese repositorio como referencia (en este checkout integrado: `gianna-backend/.env.example`):
 
    ```dotenv
    FLASK_ENV=production
@@ -52,9 +52,9 @@ Si Coolify pide la ubicación relativa al repositorio en lugar del contexto, el 
 
 La API permite preflight CORS para JSON y sólo los orígenes indicados; no usa cookies ni expone la API key al navegador. En producción no se publican rutas de diagnóstico, trazas ni las herramientas web auxiliares: el chat invoca la investigación web internamente. Un servidor fuera de la lista CORS recibe un error explícito. CORS no es autenticación ni impide clientes de consola; para el dominio público de la API configurar protección/rate limiting en el proxy de Coolify si se necesita controlar abuso.
 
-### Opción B: un recurso Docker Compose
+### Opción B: un recurso Docker Compose (sólo checkout integrado)
 
-Seleccionar `compose.yaml`, configurar `CORS_ORIGINS` con el dominio HTTPS público de Turismo, `OLLAMA_API_KEY` como secreto runtime y, opcionalmente, `OLLAMA_HOST` y `OLLAMA_MODEL`. Asignar el dominio al servicio `web`, puerto `80`; no asignar un dominio al servicio `gianna`. Dejar `PUBLIC_GIANNA_API_BASE` vacío: nginx reenvía `/api` por la red interna. Compose espera al backend saludable y conserva el índice en `gianna-storage`.
+Esta opción sólo aplica a este checkout integrado, que contiene ambos servicios; no usarla desde el repositorio frontend institucional independiente. Antes de desplegar, copiar `gianna-backend/.env.example` a `gianna-backend/.env` y completar ahí `CORS_ORIGINS` con el dominio HTTPS público de Turismo y `OLLAMA_API_KEY` como secreto runtime. `compose.yaml` lee ese archivo únicamente para el servicio `gianna`; `OLLAMA_HOST` y `OLLAMA_MODEL` son opcionales. No pongas estas variables en el `.env.example` del frontend. Asignar el dominio al servicio `web`, puerto `80`; no asignar un dominio al servicio `gianna`. Dejar `PUBLIC_GIANNA_API_BASE` vacío: nginx reenvía `/api` por la red interna. Compose espera al backend saludable y conserva el índice en `gianna-storage`.
 
 Compose no ocupa el puerto 80 del host: Coolify publica la web mediante su proxy. nginx reenvía sólo las rutas del chat y limita consultas por IP. Con un proxy inverso por delante, comprobar cómo se identifica la IP real antes de modificar límites; el límite predeterminado usa la IP del cliente que ve nginx. Para desplegar nginx por separado en modo proxy, configurar `GIANNA_BACKEND_URL` como dirección del backend, sin barra final.
 
@@ -93,7 +93,7 @@ Pop-Location
 npm run dev
 ```
 
-Abrir la URL que imprime Astro (puerto 4321, o el siguiente libre). Astro reenvía `/api` a `http://127.0.0.1:5000` tanto en desarrollo como en preview cuando `PUBLIC_GIANNA_API_BASE` está vacío. Si el backend está en otra dirección, copiar `.env.example` a `.env` y ajustar `GIANNA_BACKEND_URL` para usar proxy, o `PUBLIC_GIANNA_API_BASE` para conexión directa. La configuración local del backend usa `.env.local.example`; sus scripts la copian a `.env` sólo si todavía no existe. Si se utiliza conexión directa, incluir el origen local exacto en `CORS_ORIGINS`. Las credenciales de Ollama pertenecen exclusivamente al `.env` del backend o al entorno del servidor.
+Abrir la URL que imprime Astro (puerto 4321, o el siguiente libre). Astro reenvía `/api` a `http://127.0.0.1:5000` tanto en desarrollo como en preview cuando `PUBLIC_GIANNA_API_BASE` está vacío. Si el backend está en otra dirección, copiar el `.env.example` del frontend a `.env` y ajustar `GIANNA_BACKEND_URL` para usar proxy, o `PUBLIC_GIANNA_API_BASE` para conexión directa. La configuración local del backend usa `gianna-backend/.env.local.example` en este checkout integrado (en el repositorio backend, `.env.local.example` está en la raíz); sus scripts la copian a `.env` sólo si todavía no existe. Si se utiliza conexión directa, incluir el origen local exacto en el `CORS_ORIGINS` del backend. Las credenciales de Ollama pertenecen exclusivamente al `.env` del backend o al entorno del servidor.
 
 `src/islands/GiannaChat.tsx` conserva el diálogo visual de Lavalleja y conecta todos los accesos del menú, la guía y los destinos mediante `gianna:open`. Envía consultas a `/api/ask-text`, mantiene un identificador de conversación propio, consulta el progreso de búsqueda y muestra respuestas y fuentes reales. Permite mensajes de 4000 caracteres, Enter para enviar, Shift+Enter para una nueva línea, reintento y nueva conversación. Se retiraron las respuestas preparadas y la simulación de voz. Un fallo del servidor se muestra explícitamente, sin recomendaciones ficticias.
 
