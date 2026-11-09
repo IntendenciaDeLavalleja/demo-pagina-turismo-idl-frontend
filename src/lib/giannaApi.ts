@@ -1,5 +1,5 @@
-import type { EvidenceSource } from '../../gianna-backend/frontend/src/types';
-import { stripCitationMarkers } from '../../gianna-backend/frontend/src/presentation';
+import type { EvidenceSource } from './giannaTypes';
+import { stripCitationMarkers } from './giannaPresentation';
 
 export type GiannaAnswer = {
   answer: string;

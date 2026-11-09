@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { ConversationMessage } from '../../gianna-backend/frontend/src/types';
+import type { ConversationMessage } from '../lib/giannaTypes';
 import { askGianna, giannaApiUrl, giannaError, sourceUrl } from '../lib/giannaApi';
 import '../styles/gianna.css';
 
