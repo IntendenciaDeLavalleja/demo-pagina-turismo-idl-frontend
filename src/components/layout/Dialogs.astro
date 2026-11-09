@@ -1,0 +1,12 @@
+---
+import GiannaChat from '../../islands/GiannaChat';
+---
+<GiannaChat client:load />
+<!-- Island: DestinationDetail. -->
+<dialog id="destination-dialog" class="modal destination-dialog" aria-labelledby="destination-title"><div class="modal-box destination-panel"><button class="detail-close circle-button" data-close-dialog="destination-dialog" aria-label="Cerrar lugar">×</button><div id="destination-content"></div></div><form method="dialog" class="modal-backdrop"><button aria-label="Cerrar detalle">Cerrar</button></form></dialog>
+<!-- Island: SavedTrip. -->
+<dialog id="trip-dialog" class="modal" aria-labelledby="trip-title"><div class="modal-box utility-panel"><div class="utility-heading"><div><p class="eyebrow">UN VIAJE QUE YA EMPIEZA</p><h2 id="trip-title">Tu Lavalleja.</h2></div><button class="circle-button" data-close-dialog="trip-dialog" aria-label="Cerrar mi viaje">×</button></div><div id="trip-content"></div></div><form method="dialog" class="modal-backdrop"><button aria-label="Cerrar mi viaje">Cerrar</button></form></dialog>
+<!-- Island: PracticalInformation. -->
+<dialog id="info-dialog" class="modal" aria-labelledby="info-title"><div class="modal-box utility-panel"><div class="utility-heading"><div><p class="eyebrow" id="info-eyebrow">PARA TU VIAJE</p><h2 id="info-title">Antes de venir.</h2></div><button class="circle-button" data-close-dialog="info-dialog" aria-label="Cerrar información">×</button></div><div id="info-content" class="info-content"></div></div><form method="dialog" class="modal-backdrop"><button aria-label="Cerrar información">Cerrar</button></form></dialog>
+<div class="site-toast" id="site-toast" role="status" aria-live="polite"></div>
+<noscript><div class="noscript-note">Podés recorrer las fotografías y la propuesta de viaje. Para usar la guía interactiva, los favoritos y el chat de Gianna, activá JavaScript. Consultá información turística en <a href="https://www.lavalleja.gub.uy/">la Intendencia de Lavalleja</a>.</div></noscript>

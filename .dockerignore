@@ -1,0 +1,15 @@
+node_modules
+dist
+.astro
+.git
+.env*
+base-project
+sample
+**/.git
+gianna-backend/.venv
+gianna-backend/models
+gianna-backend/storage
+gianna-backend/logs
+gianna-backend/run
+gianna-backend/reports
+**/__pycache__

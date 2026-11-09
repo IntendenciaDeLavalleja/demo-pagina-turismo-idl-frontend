@@ -1,0 +1,44 @@
+{
+  "name": "turismo-lavalleja",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0",
+    "check": "astro check && tsc --noEmit",
+    "check:gianna": "node scripts/check-gianna.mjs",
+    "check:coolify": "node scripts/check-coolify.mjs",
+    "check:guide-artwork": "node scripts/check-guide-artwork.mjs",
+    "check:journey-models": "node scripts/check-journey-models.mjs",
+    "check:artigas": "node scripts/check-artigas-rebuild.mjs",
+    "check:penitente": "node scripts/check-penitente-rebuild.mjs",
+    "check:journey-mode": "node scripts/check-journey-mode.mjs",
+    "check:journey-atmosphere": "node scripts/check-journey-atmosphere.mjs",
+    "check:journey-surprises": "node scripts/check-journey-surprises.mjs",
+    "check:stewart-vargas": "node scripts/check-stewart-vargas.mjs",
+    "check:parque-rodo": "node scripts/check-parque-rodo.mjs"
+  },
+  "dependencies": {
+    "@astrojs/react": "7.1.1",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.4.2",
+    "daisyui": "5.7.50",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwindcss": "4.3.3",
+    "three": "0.170.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "^0.170.0",
+    "typescript": "6.0.3"
+  }
+}

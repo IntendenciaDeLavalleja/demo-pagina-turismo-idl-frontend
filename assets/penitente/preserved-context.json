@@ -1,0 +1,159 @@
+{
+  "scope": "Only Salto del Penitente and its own camera settings may change.",
+  "villaPrefix": "1993b50b4415d6f7eb24d33727f1441fabe482c377ac2e7ab4ac79e680ec6f6f",
+  "files": [
+    {
+      "file": "src/three/landmarks/artigas.ts",
+      "sha256": "7a98b1d55e51f37cb99608d1cbfe4489fdcc01d8f4d86021b5b95bea505b7a8c"
+    },
+    {
+      "file": "src/three/landmarks/artigasAsset.json",
+      "sha256": "8079fdc6d8ab60aad459ff4e0f140909b065579f629f3f148fd508380b6e1b39"
+    },
+    {
+      "file": "src/three/landmarks/uruguayFlag.ts",
+      "sha256": "9f63fba38899ce9deec6dcf3e222d5b96cd81b8cf18d5379c0080f0f75b7c866"
+    },
+    {
+      "file": "src/three/landmarks/monastery.ts",
+      "sha256": "246d6d9c4868c8b39aa26651d76443f29f37841bf9f48d90afca3f6f3553e6d9"
+    },
+    {
+      "file": "src/three/landmarks/monasteryRoof.ts",
+      "sha256": "33acde2beb534f2ebe6cc4d14b745b0e3180be3eb8dabb13e71a6993313a743f"
+    },
+    {
+      "file": "src/three/landmarks/plazaLibertad.ts",
+      "sha256": "d70dc4fb6a95685049990b395832065ce9dfbd06c510ab284cc7f4da6ed82e3d"
+    },
+    {
+      "file": "src/three/landmarks/salus.ts",
+      "sha256": "1a68f8dcc045101ca5e6f9290f4f807145a80ed1fdc50078a7cdc6fb7ade11c8"
+    },
+    {
+      "file": "src/three/landmarks/salusPuma.ts",
+      "sha256": "5ec6f178ab47144e60752e1a8a6d3c64839964f2c672d3b99b1e6115fb18ac7c"
+    },
+    {
+      "file": "src/three/landmarks/natureMonuments.ts",
+      "sha256": "fec010cb1dd245e39be1a3d0321f18551caa0609fedd5f59458b4f835071598c"
+    },
+    {
+      "file": "src/data/journeyRoute.ts",
+      "sha256": "6c767dd1fe9da74e511521e7bdcd9f3e8ccf8fdbd1113ab000b5f34c82c5098d"
+    },
+    {
+      "file": "src/data/journeyStops.ts",
+      "sha256": "d5540b17aee6f26ae910fb7257b500de9e65508147ed7547eaa4f6eacfbf2e46"
+    }
+  ],
+  "authorizedFollowups": [
+    {
+      "date": "2026-11-06",
+      "authorization": "User requested the Arequita and Santa Lucía experience, including its new title.",
+      "file": "src/data/journeyStops.ts",
+      "previousSha256": "82d6863310287c2d5412083cfe15d54a562909f7d23be8db6e36de2891847e33",
+      "sha256": "8ca806de90e42b196e17fa124b0ee18ec9613a2e2827a1c04f6d649f9b493ed0",
+      "affectedStop": "arequita",
+      "otherStopsUnchangedSha256": "a64bc67a2d4cb1d18a99bf9697880d53dc0e9f4cd638ebe27e1725a8b107f186"
+    },
+    {
+      "date": "2026-11-06",
+      "authorization": "User requested the three national pavilions at Cerro Artigas.",
+      "file": "src/three/landmarks/artigas.ts",
+      "previousSha256": "aac9c6ba3ec6854c7a9e2a46fd69e4b5e3518489ca5c2a2eb5d544c95afafad4",
+      "sha256": "bd1738bda133aa618a7c141b4d39538fc9023da768e3d3a3e17db8a10ca5de85",
+      "changedParts": [
+        "flag factories",
+        "flag selection and cloth width",
+        "mast spacing and lateral placement"
+      ],
+      "preserved": [
+        "sculpture",
+        "terrain",
+        "camera framing",
+        "pole heights"
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "authorization": "User requested the three national pavilions at Cerro Artigas.",
+      "file": "src/data/journeyStops.ts",
+      "previousSha256": "8ca806de90e42b196e17fa124b0ee18ec9613a2e2827a1c04f6d649f9b493ed0",
+      "sha256": "3b0f352574c3337940cddaa15f840dddd506f4f4aa72d265b00f7de8ab9da7cf",
+      "affectedStop": "cerro-artigas",
+      "otherStopsUnchangedSha256": "370ba7995720644ff8f4c0ea0d106306372b82b920fe94552df85bb2b8ea0628"
+    },
+    {
+      "date": "2026-11-06",
+      "authorization": "User requested front-view order Thirty-Three / National / Artigas and an elevated central National pavilion.",
+      "file": "src/three/landmarks/artigas.ts",
+      "previousSha256": "bd1738bda133aa618a7c141b4d39538fc9023da768e3d3a3e17db8a10ca5de85",
+      "sha256": "7a98b1d55e51f37cb99608d1cbfe4489fdcc01d8f4d86021b5b95bea505b7a8c",
+      "changedParts": [
+        "pavilion order",
+        "mast lengths and banner elevation",
+        "central banner width"
+      ],
+      "preserved": [
+        "sculpture",
+        "terrain",
+        "mast foot positions",
+        "camera framing"
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "authorization": "User explicitly requested a photograph-led reconstruction of Represa Stewart Vargas in Villa Serrana, with independent quality control.",
+      "file": "src/data/journeyStops.ts",
+      "previousSha256": "3b0f352574c3337940cddaa15f840dddd506f4f4aa72d265b00f7de8ab9da7cf",
+      "sha256": "7a224983427b80908cfdbd9833c0ff045e274f488d85af26baf06caa1d61a92b",
+      "affectedStop": "villa-serrana",
+      "otherStopsUnchangedSha256": "19463aed3a7f8492970e36577c9fec7de2715340e10f9f008a9dd0685a89892b",
+      "preserved": [
+        "order and positions of the nine stops",
+        "original Ventorrillo builder",
+        "other eight destination texts and models"
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "authorization": "User requested a Villa Serrana visit to the Ventorrillo first, followed by Stewart Vargas, with jumping fish in its reservoir.",
+      "file": "src/data/journeyStops.ts",
+      "previousSha256": "7a224983427b80908cfdbd9833c0ff045e274f488d85af26baf06caa1d61a92b",
+      "sha256": "72b48c9336348b00d743b28a421d4d8f39d81f75a7fd468d1c57985f1f348b8c",
+      "affectedStop": "villa-serrana",
+      "otherStopsUnchangedSha256": "19463aed3a7f8492970e36577c9fec7de2715340e10f9f008a9dd0685a89892b",
+      "preserved": [
+        "order and positions of the nine stops",
+        "original Ventorrillo builder",
+        "native dam geometry",
+        "other eight destination texts and models"
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "authorization": "User requested a researched reconstruction of Parque Rodo in Minas and its addition to the Three.js route; the nine existing placements and relative order are preserved.",
+      "file": "src/data/journeyRoute.ts",
+      "previousSha256": "76ebd30cfde32250ce249c0197e9ff67c1516713ad5d4410286dd2c6c7075e3f",
+      "sha256": "6c767dd1fe9da74e511521e7bdcd9f3e8ccf8fdbd1113ab000b5f34c82c5098d",
+      "baselineRestoredByRemovingOnlyAuthorizedAdditions": "76ebd30cfde32250ce249c0197e9ff67c1516713ad5d4410286dd2c6c7075e3f",
+      "preserved": [
+        "all original destination positions and relative order",
+        "all other landmark constructors and approved assets"
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "authorization": "User requested Parque Rodo with its own views and a nocturnal festival; camera visit labels are shared with the previously authorized Ventorrillo then Stewart Vargas visit.",
+      "file": "src/data/journeyStops.ts",
+      "previousSha256": "72b48c9336348b00d743b28a421d4d8f39d81f75a7fd468d1c57985f1f348b8c",
+      "sha256": "d5540b17aee6f26ae910fb7257b500de9e65508147ed7547eaa4f6eacfbf2e46",
+      "baselineRestoredByRemovingOnlyAuthorizedAdditions": "72b48c9336348b00d743b28a421d4d8f39d81f75a7fd468d1c57985f1f348b8c",
+      "preserved": [
+        "all original destination positions and relative order",
+        "all other landmark constructors and approved assets"
+      ]
+    }
+  ]
+}
